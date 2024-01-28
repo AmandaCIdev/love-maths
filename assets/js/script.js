@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-
     document.getElementById("answer-box").addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
             checkAnswer();
@@ -28,6 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
  * The main game "loop", called when the script is first loaded
  * and after the user's answer has been processed
  */
+// Generate two random numbers between 1 and 25
+// Math.floor rounds down to the whole number
+// Math.random generates random numbers
+
 
 function runGame(gameType) {
 
@@ -79,13 +82,14 @@ function checkAnswer() {
 
 /**
  * Gets the operands (the numbers) and the operator (plus, minus etc)
- * directly from the dom, and returns the correct answer.
+ * directly from the DOM, and returns the correct answer.
  */
 function calculateCorrectAnswer() {
     let operand1 = parseInt(document.getElementById('operand1').innerText);
     let operand2 = parseInt(document.getElementById('operand2').innerText);
     let operator = document.getElementById("operator").innerText;
 
+    console.log('*****', operator, operand1, operand2)
     if (operator === "+") {
         return [operand1 + operand2, "addition"];
     } else if (operator === "x") {
@@ -121,15 +125,10 @@ function incrementWrongAnswer() {
 
 }
 
-
-
-
-
-
 function displayAdditionQuestion(operand1, operand2) {
-    document.getElementById(`operand1`).textContent = operand1;
-    document.getElementById(`operand2`).textContent = operand2;
-    document.getElementById(`operator`).textContent = "+";
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "+";
 
 }
 
@@ -137,17 +136,18 @@ function displayAdditionQuestion(operand1, operand2) {
 function displaySubtractQuestion(operand1, operand2) {
     document.getElementById("operand1").textContent = operand1 > operand2 ? operand1 : operand2;
     document.getElementById("operand2").textContent = operand1 > operand2 ? operand2 : operand1;
-    document.getElementById(`operator`).textContent = "-";
+    document.getElementById("operator").textContent = "-";
 }
 
 function displayMultiplyQuestion(operand1, operand2) {
-    document.getElementById(`operand1`).textContent = operand1;
-    document.getElementById(`operand2`).textContent = operand2;
-    document.getElementById(`operator`).textContent = "x";
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "x";
 }
 
 function displayDivisionQuestion(operand1, operand2) {
-    document.getElementById(`operand1`).textContent = operand1;
-    document.getElementById(`operand2`).textContent = operand2;
-    document.getElementById(`operator`).textContent = "/";
+    operand1 = operand1 * operand2;
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "/";
 }
