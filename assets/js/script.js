@@ -15,6 +15,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    document.getElementById("answer-box").addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    })
+
     runGame("addition");
 });
 
@@ -22,7 +28,12 @@ document.addEventListener("DOMContentLoaded", function () {
  * The main game "loop", called when the script is first loaded
  * and after the user's answer has been processed
  */
+
 function runGame(gameType) {
+
+    document.getElementById("answer-box").value = ""; //automatically empties answer box for next game
+    document.getElementById("answer-box").focus(); //automatically places curser in answer box for each new game
+
 
 
     // Creates two random numbers between 1 and 25
